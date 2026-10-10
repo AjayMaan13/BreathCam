@@ -114,11 +114,11 @@ breathcam/
 - Why would peak detection and Welch disagree on a noisy signal?
 
 ## Tasks
-- [ ] Write `signal.py` with: `detrend`, `bandpass(low, high, fs)`, `welch_rate(x, fs, window_s, step_s)`, `peak_rate(x, fs)`, and `quality_score` (peak prominence relative to in-band power).
-- [ ] Write unit tests on synthetic signals (known rate, added noise, added drift, added motion spikes).
-- [ ] Load BIDMC with `wfdb`; extract respiratory rate from the respiration signal; compare against the annotated breaths.
-- [ ] Compute MAE, RMSE, and a first Bland-Altman plot on this data.
-- [ ] Save the notebook as `notebooks/01_bidmc_signal.ipynb`.
+- [x] Write `signal.py` with: `detrend`, `bandpass(low, high, fs)`, `welch_rate(x, fs, window_s, step_s)`, `peak_rate(x, fs)`, and `quality_score` (peak prominence relative to in-band power).
+- [x] Write unit tests on synthetic signals (known rate, added noise, added drift, added motion spikes).
+- [x] Load BIDMC with `wfdb`; extract respiratory rate from the respiration signal; compare against the annotated breaths.
+- [x] Compute MAE, RMSE, and a first Bland-Altman plot on this data.
+- [x] Save the notebook as `notebooks/01_bidmc_signal.ipynb`.
 
 **Done when:** your synthetic tests pass and you can state a BIDMC MAE in breaths/min. This notebook is also your "worked with a clinically annotated dataset" line.
 
@@ -150,12 +150,12 @@ breathcam/
 - Why use vertical flow rather than total flow magnitude?
 
 ## Tasks
-- [ ] `roi.py`: MediaPipe Pose, build a chest ROI from shoulder and hip landmarks, smooth it over time, and fall back to the last good ROI when visibility drops.
-- [ ] `motion.py`: Farneback mean vertical flow per frame in the ROI; also a frame-differencing baseline. Downscale frames (e.g., 320x240) for speed.
-- [ ] Wire it together: video file to raw signal to bandpass (about 0.1-1.0 Hz) to sliding-window Welch (30 s window, 5 s step) to rate plus quality score.
+- [x] `roi.py`: MediaPipe Pose, build a chest ROI from shoulder and hip landmarks, smooth it over time, and fall back to the last good ROI when visibility drops.
+- [x] `motion.py`: Farneback mean vertical flow per frame in the ROI; also a frame-differencing baseline. Downscale frames (e.g., 320x240) for speed.
+- [x] Wire it together: video file to raw signal to bandpass (about 0.1-1.0 Hz) to sliding-window Welch (30 s window, 5 s step) to rate plus quality score.
 - [ ] Record a few quick test clips of yourself (paced at 12 and 20 breaths/min with a metronome) and iterate until the estimate is in the right neighbourhood.
-- [ ] Plot the raw signal, filtered signal, spectrum, and detected peaks in one diagnostic figure. You'll reuse it in the write-up.
-- [ ] Add a CLI: `python -m breathcam.run --video clip.mp4`.
+- [x] Plot the raw signal, filtered signal, spectrum, and detected peaks in one diagnostic figure. You'll reuse it in the write-up.
+- [x] Add a CLI: `python -m breathcam.run --video clip.mp4`.
 
 **Done when:** the pipeline outputs a rate and a confidence for any clip, and your sanity tests (breath-hold, hand-wave) behave sensibly.
 
