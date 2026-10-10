@@ -26,7 +26,8 @@ consent_log*
 consent_signed*
 
 # TCPS 2 certificate shows a personal name; keep it local
-docs/tcps2_certificate*
+docs/*certificate*
+docs/tcps2*
 
 # Downloaded datasets and model artefacts
 physionet/

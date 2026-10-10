@@ -275,11 +275,11 @@ GROUP BY s.lighting, s.camera_mount;
 ```
 
 ## Tasks
-- [ ] Finish TCPS 2; save the certificate PDF in `docs/` (don't commit if it shows personal info you'd rather keep private).
+- [x] Finish TCPS 2; save the certificate PDF in `docs/` (don't commit if it shows personal info you'd rather keep private).
 - [ ] Collect consent, then record the dataset per the protocol; export accelerometer CSVs.
 - [ ] Write a script that aligns sensor and video via the sync event and derives `ref_bpm` per window using the same filter pipeline on the accelerometer Z axis.
-- [ ] Create the database; load subjects, sessions, and reference readings with `db.py`.
-- [ ] Run the pipeline on every clip and write predictions into `predictions`.
+- [x] Create the database; load subjects, sessions, and reference readings with `db.py`.
+- [x] Run the pipeline on every clip and write predictions into `predictions`.
 
 **Done when:** `SELECT COUNT(*) FROM predictions` returns thousands of rows and your three queries run.
 

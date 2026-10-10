@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Phase 3: SQL layer (on the 5 existing clips; no accelerometer yet)
+- `sql/schema.sql` (plan schema + `ref_source` on references, `notes` on sessions), `sql/eval_queries.sql`, `breathcam/db.py`, `breathcam/build_db.py`
+- 99 predictions (welch / peaks / framediff) over 33 windows; paced clips agree with the metronome target (MAE about 0.1 bpm). Reference is the metronome target, not an independent measurement
+- Still to do: accelerometer recordings, sync script, other participants (needs signed consent)
+
 ### Phase 2: video pipeline v1 (code)
 - `breathcam/roi.py` (MediaPipe chest ROI), `breathcam/motion.py` (Farneback and frame-differencing signals), `breathcam/run.py` (CLI + diagnostic figure)
 - Synthetic-video tests in `tests/test_video.py`

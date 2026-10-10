@@ -18,6 +18,13 @@ python -c "import wfdb; wfdb.dl_database('bidmc','data/bidmc'); wfdb.dl_files('b
 jupyter notebook notebooks/01_bidmc_signal.ipynb  # needs the BIDMC download above
 ```
 
+Build the SQLite database and run the evaluation queries:
+
+```bash
+python -m breathcam.build_db                                         # about 90 s
+sqlite3 -header -column data/breathcam.db < sql/eval_queries.sql
+```
+
 ## Setup
 
 Requires [uv](https://docs.astral.sh/uv/) and Python 3.12 (pinned in `.python-version`).
