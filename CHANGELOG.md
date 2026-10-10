@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Phase 4: evaluation (on existing data; metronome reference only)
+- `breathcam/eval.py`: `load_windows`, `summarize`, `rejection_rate`, `bootstrap_ci` (resamples subjects; refuses with fewer than 5), `tests/test_eval.py`
+- `notebooks/02_evaluation.ipynb` and figures in `docs/figures/`: method comparison (MAE 0.11-0.18 bpm vs metronome on 26 windows), Bland-Altman, failure analysis
+- Limits: 1 subject, 1 setup, no independent reference; CI not estimable. Per-condition conclusions need new recordings
+
 ### Phase 3: SQL layer (on the 5 existing clips; no accelerometer yet)
 - `sql/schema.sql` (plan schema + `ref_source` on references, `notes` on sessions), `sql/eval_queries.sql`, `breathcam/db.py`, `breathcam/build_db.py`
 - 99 predictions (welch / peaks / framediff) over 33 windows; paced clips agree with the metronome target (MAE about 0.1 bpm). Reference is the metronome target, not an independent measurement

@@ -309,11 +309,11 @@ GROUP BY s.lighting, s.camera_mount;
 - Why must the bootstrap resample subjects rather than windows?
 
 ## Tasks
-- [ ] `eval.py`: MAE, RMSE, Bland-Altman plot, within-2-bpm accuracy, and per-condition tables (pull from SQL).
-- [ ] Bootstrap confidence intervals by subject.
-- [ ] Compare Welch vs. peaks vs. frame differencing vs. optical flow.
-- [ ] Failure analysis: pick 3-5 worst clips, plot their signals, and write one line each on the cause (motion, low light, loose clothing, handheld camera).
-- [ ] Save headline figures to `docs/figures/`.
+- [x] `eval.py`: MAE, RMSE, Bland-Altman plot, within-2-bpm accuracy, and per-condition tables (pull from SQL).
+- [x] Bootstrap confidence intervals by subject.
+- [x] Compare Welch vs. peaks vs. frame differencing vs. optical flow.
+- [x] Failure analysis: pick 3-5 worst clips, plot their signals, and write one line each on the cause (motion, low light, loose clothing, handheld camera).
+- [x] Save headline figures to `docs/figures/`.
 
 **Done when:** you can state, with numbers, where v1 works and where it fails.
 
