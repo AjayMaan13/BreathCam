@@ -1,0 +1,39 @@
+# Environment
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+
+# Data: raw clips, sensor logs, the consent log and the subject-key mapping
+# never leave this machine. Only the placeholder and the data README are tracked.
+data/*
+!data/.gitkeep
+!data/README.md
+
+# Anything that could identify a participant, wherever it ends up
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.m4v
+*.db
+*.sqlite
+*.sqlite3
+subject_key*
+consent_log*
+consent_signed*
+
+# TCPS 2 certificate shows a personal name; keep it local
+docs/tcps2_certificate*
+
+# Downloaded datasets and model artefacts
+physionet/
+bidmc*/
+*.ckpt
+*.pt
+*.pth
+
+# Secrets
+.env

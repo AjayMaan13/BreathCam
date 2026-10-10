@@ -1,0 +1,13 @@
+numpy
+scipy
+pandas
+matplotlib
+wfdb
+opencv-python
+mediapipe
+scikit-learn
+torch
+torchvision
+streamlit
+pytest
+jupyter
