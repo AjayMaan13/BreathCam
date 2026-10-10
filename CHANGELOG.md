@@ -4,7 +4,8 @@
 
 ### Phase 2: video pipeline v1 (code)
 - `breathcam/roi.py` (MediaPipe chest ROI), `breathcam/motion.py` (Farneback and frame-differencing signals), `breathcam/run.py` (CLI + diagnostic figure)
-- Synthetic-video tests in `tests/test_video.py`; real-clip tests (paced rates, breath-hold, hand-wave) still to do
+- Synthetic-video tests in `tests/test_video.py`
+- Real-clip checks (self-recorded, manual ROI): 12 bpm clip -> 12.0, 20 bpm clip -> 20.0, breath-hold windows rejected, hand-wave clip rejected at quality threshold 0.6 (0.53 scored; 0.5 let it through)
 
 ### Phase 1: signal foundations on BIDMC
 - `breathcam/signal.py` (detrend, bandpass, Welch and peak rate, quality score), `breathcam/eval.py` (MAE, RMSE, within-tolerance, Bland-Altman)

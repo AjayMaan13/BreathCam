@@ -153,7 +153,7 @@ breathcam/
 - [x] `roi.py`: MediaPipe Pose, build a chest ROI from shoulder and hip landmarks, smooth it over time, and fall back to the last good ROI when visibility drops.
 - [x] `motion.py`: Farneback mean vertical flow per frame in the ROI; also a frame-differencing baseline. Downscale frames (e.g., 320x240) for speed.
 - [x] Wire it together: video file to raw signal to bandpass (about 0.1-1.0 Hz) to sliding-window Welch (30 s window, 5 s step) to rate plus quality score.
-- [ ] Record a few quick test clips of yourself (paced at 12 and 20 breaths/min with a metronome) and iterate until the estimate is in the right neighbourhood.
+- [x] Record a few quick test clips of yourself (paced at 12 and 20 breaths/min with a metronome) and iterate until the estimate is in the right neighbourhood.
 - [x] Plot the raw signal, filtered signal, spectrum, and detected peaks in one diagnostic figure. You'll reuse it in the write-up.
 - [x] Add a CLI: `python -m breathcam.run --video clip.mp4`.
 
