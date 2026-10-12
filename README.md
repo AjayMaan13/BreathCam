@@ -25,6 +25,13 @@ python -m breathcam.build_db                                         # about 90 
 sqlite3 -header -column data/breathcam.db < sql/eval_queries.sql
 ```
 
+Compare the 1D CNN with the classical methods on BIDMC (patient-level cross-validation, about 10 min on CPU):
+
+```bash
+python -m breathcam.bidmc_eval
+jupyter notebook notebooks/03_cnn_vs_classical.ipynb
+```
+
 ## Setup
 
 Requires [uv](https://docs.astral.sh/uv/) and Python 3.12 (pinned in `.python-version`).

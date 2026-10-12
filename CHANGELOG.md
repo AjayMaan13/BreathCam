@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Phase 5 (partial): Model A, 1D CNN on BIDMC
+- `breathcam/dataset.py` (BIDMC windows, patient-level `GroupKFold`), `breathcam/models.py` (`BreathCNN`), `breathcam/train.py` (early stopping, out-of-fold predictions), `breathcam/bidmc_eval.py` (writes `data/bidmc.db`, same schema as the video database)
+- `notebooks/03_cnn_vs_classical.ipynb`: CNN MAE 0.98 vs Welch 1.16 vs peaks 1.62 vs mean baseline 2.31 (53 patients); paired difference CNN-Welch -0.18, 95% CI -0.57 to +0.18, so not distinguishable; CNN regresses to the mean at slow and fast rates
+- Not done: video models (r3d_18, CNN+LSTM) and 16-frame video clips; they need more video subjects
+
 ### Phase 4: evaluation (on existing data; metronome reference only)
 - `breathcam/eval.py`: `load_windows`, `summarize`, `rejection_rate`, `bootstrap_ci` (resamples subjects; refuses with fewer than 5), `tests/test_eval.py`
 - `notebooks/02_evaluation.ipynb` and figures in `docs/figures/`: method comparison (MAE 0.11-0.18 bpm vs metronome on 26 windows), Bland-Altman, failure analysis

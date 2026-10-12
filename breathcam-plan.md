@@ -345,12 +345,12 @@ GROUP BY s.lighting, s.camera_mount;
 - What's your baseline, and does your model beat it?
 
 ## Tasks
-- [ ] `dataset.py`: build clips of 16 frames at 112x112; `GroupKFold` or leave-one-subject-out splits using `subject_id` from the database.
-- [ ] Model A: 1D CNN on the flow signal.
+- [ ] `dataset.py`: build clips of 16 frames at 112x112; `GroupKFold` or leave-one-subject-out splits using `subject_id` from the database. *(Done for BIDMC signal windows with patient-level `GroupKFold`; 16-frame video clips wait for more video data.)*
+- [x] Model A: 1D CNN on the flow signal. *(Trained on the BIDMC respiration signal; the video flow signal needs more subjects.)*
 - [ ] Model B: `r3d_18` (or `r2plus1d_18`) pretrained; freeze early layers; train the head; predict rate bin.
 - [ ] Model C (optional): ResNet18 features plus LSTM.
-- [ ] Train on Colab/Kaggle; log metrics; save checkpoints; export per-window predictions into the `predictions` table.
-- [ ] Compare all methods in one table using your existing SQL queries.
+- [x] Train on Colab/Kaggle; log metrics; save checkpoints; export per-window predictions into the `predictions` table. *(Model A is tiny and was trained locally on CPU; predictions are in `data/bidmc.db`.)*
+- [x] Compare all methods in one table using your existing SQL queries. *(BIDMC: welch, peaks, cnn1d, mean baseline.)*
 
 **Done when:** you have a fair, subject-split comparison of classical vs. deep methods, even if the classical method wins (say so).
 
