@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Phase 6 (on BIDMC, 1D CNN): explainability and leakage
+- `breathcam/explain.py` (1D Grad-CAM), `breathcam/leakage.py`, `split="random"` option in `train.py`, `notebooks/04_explain_and_leakage.ipynb`, figures in `docs/figures/`
+- Leakage: same CNN, random-window split MAE 0.46 vs patient-split 0.98 (honest error 2.1x higher)
+- Explainability: attention is not concentrated at annotated breaths (1.01x vs 1.01x control); passes the randomised-weights check; occlusion effect weak (1.28 vs 1.23 vs 1.05 bpm)
+- Not done: temporal Grad-CAM on a 3D video model and chest-vs-background occlusion (need video data)
+
 ### Phase 5 (partial): Model A, 1D CNN on BIDMC
 - `breathcam/dataset.py` (BIDMC windows, patient-level `GroupKFold`), `breathcam/models.py` (`BreathCNN`), `breathcam/train.py` (early stopping, out-of-fold predictions), `breathcam/bidmc_eval.py` (writes `data/bidmc.db`, same schema as the video database)
 - `notebooks/03_cnn_vs_classical.ipynb`: CNN MAE 0.98 vs Welch 1.16 vs peaks 1.62 vs mean baseline 2.31 (53 patients); paired difference CNN-Welch -0.18, 95% CI -0.57 to +0.18, so not distinguishable; CNN regresses to the mean at slow and fast rates

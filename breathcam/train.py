@@ -6,6 +6,7 @@ from pathlib import Path
 import numpy as np
 import torch
 from torch import nn
+from sklearn.model_selection import KFold
 from torch.utils.data import DataLoader, TensorDataset
 
 from .dataset import subject_folds
@@ -76,17 +77,22 @@ def fit(Xtr, ytr, Xva, yva, epochs=40, lr=1e-3, bs=64, patience=8, seed=0, verbo
     return model, history
 
 
-def cross_val_predict(X, y, groups, n_splits=5, seed=0, ckpt_dir=None, **fit_kw):
-    """Out-of-fold predictions with patient-level splits.
+def cross_val_predict(X, y, groups, n_splits=5, seed=0, ckpt_dir=None, split="patient", **fit_kw):
+    """Out-of-fold predictions.
 
-    Each window is predicted by a model that never saw that window's patient.
-    Inside each training set, 10% of the patients are held out to choose the
-    stopping epoch (so the test fold is never used for tuning).
+    split="patient" (correct): each window is predicted by a model that never saw
+    that window's patient. Inside each training set, 10% of the patients are held
+    out to choose the stopping epoch (so the test fold is never used for tuning).
+
+    split="random" (the leakage mistake, for the Phase 6 experiment): windows are
+    split at random, so windows of the same patient (which overlap in time) land
+    in both train and test; the validation set is 10% of random training windows.
 
     Inputs:
         X, y: windows and reference rates; groups: patient id per window.
         n_splits: folds; seed: base random seed.
         ckpt_dir: if given, save each fold's weights there as cnn1d_fold{k}.pt.
+        split: "patient" or "random" (see above).
         **fit_kw: passed to fit (epochs, patience, ...).
     Returns:
         (pred, mean_pred, log): pred is the CNN's out-of-fold prediction per
@@ -94,11 +100,16 @@ def cross_val_predict(X, y, groups, n_splits=5, seed=0, ckpt_dir=None, **fit_kw)
         rate); log is a list of per-fold dicts (fold, epochs, val_mae, test_mae).
     """
     pred, mean_pred, log = np.full(len(y), np.nan), np.full(len(y), np.nan), []
-    for k, (tr, te) in enumerate(subject_folds(groups, n_splits)):
+    folds = (subject_folds(groups, n_splits) if split == "patient"
+             else list(KFold(n_splits, shuffle=True, random_state=seed).split(X)))
+    for k, (tr, te) in enumerate(folds):
         rng = np.random.default_rng(seed + k)
-        patients = np.unique(groups[tr])
-        val_patients = rng.choice(patients, max(1, len(patients) // 10), replace=False)
-        is_val = np.isin(groups[tr], val_patients)
+        if split == "patient":
+            patients = np.unique(groups[tr])
+            val_patients = rng.choice(patients, max(1, len(patients) // 10), replace=False)
+            is_val = np.isin(groups[tr], val_patients)
+        else:
+            is_val = rng.random(len(tr)) < 0.1
         tr2, va = tr[~is_val], tr[is_val]
         model, hist = fit(X[tr2], y[tr2], X[va], y[va], seed=seed + k, **fit_kw)
         pred[te] = predict(model, X[te])

@@ -45,3 +45,19 @@ def test_bidmc_windows():
     d = load_bidmc(BIDMC)
     assert d["X"].shape[1] == 750 and len(d["X"]) == len(d["y"]) == len(d["rec"]) == len(d["t0"])
     assert abs(d["X"].mean(axis=1)).max() < 1e-3 and set(d["rec"]) == set(range(1, 54))
+
+
+def test_cross_val_predict_both_splits_cover_every_window():
+    from breathcam.train import cross_val_predict
+    X, y = synth(120, 3)
+    groups = np.repeat(np.arange(12), 10)
+    for split in ("patient", "random"):
+        pred, mean, _ = cross_val_predict(X, y, groups, n_splits=3, epochs=1, split=split)
+        assert not np.isnan(pred).any() and not np.isnan(mean).any()
+
+
+def test_grad_cam_shape_and_range():
+    from breathcam.explain import grad_cam_1d
+    X, _ = synth(6, 4)
+    cam = grad_cam_1d(BreathCNN(), X)
+    assert cam.shape == X.shape and cam.min() >= 0 and np.allclose(cam.max(axis=1), 1)

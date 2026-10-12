@@ -378,10 +378,10 @@ GROUP BY s.lighting, s.camera_mount;
 - What's the minimal change you need to make to demonstrate leakage?
 
 ## Tasks
-- [ ] `explain.py`: temporal Grad-CAM for the 3D model; export overlay videos or frame strips.
-- [ ] Occlusion test: mask the chest ROI vs. a background patch and compare the effect on predictions.
-- [ ] Leakage experiment: train the same model with (a) random window splits and (b) subject-level splits; report both accuracies in one bar chart.
-- [ ] Write a half-page note: "What the model attends to" and "How much leakage inflates results".
+- [ ] `explain.py`: temporal Grad-CAM for the 3D model; export overlay videos or frame strips. *(Done as a 1D Grad-CAM for the BIDMC CNN with plots; the 3D video version waits for video data.)*
+- [ ] Occlusion test: mask the chest ROI vs. a background patch and compare the effect on predictions. *(Done on the 1D signal: highest- vs random vs lowest-attention 5 s; the chest-vs-background version needs the video model.)*
+- [x] Leakage experiment: train the same model with (a) random window splits and (b) subject-level splits; report both accuracies in one bar chart.
+- [x] Write a half-page note: "What the model attends to" and "How much leakage inflates results".
 
 **Done when:** you have one explanation figure and one leakage figure you could put in a slide.
 

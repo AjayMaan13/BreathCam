@@ -4,7 +4,7 @@ Camera-based respiratory-rate estimation, evaluated the way a clinical measureme
 
 > **Research prototype. Not a medical device.** Do not use it to make clinical decisions.
 
-**Status:** Phase 1 done (signal estimation on BIDMC). Phase 2 code done; needs real test clips.
+**Status:** Phases 0-4 done on one subject's clips and BIDMC; Phases 5-6 done for the 1D CNN on BIDMC. Video deep-learning models, accelerometer reference and multi-subject data are still to do.
 
 Estimate a rate from a video (one-time pose-model download first, see the error message or `breathcam/roi.py`):
 
@@ -30,6 +30,13 @@ Compare the 1D CNN with the classical methods on BIDMC (patient-level cross-vali
 ```bash
 python -m breathcam.bidmc_eval
 jupyter notebook notebooks/03_cnn_vs_classical.ipynb
+```
+
+Leakage experiment and Grad-CAM (about 10 min for the leakage run):
+
+```bash
+python -m breathcam.leakage
+jupyter notebook notebooks/04_explain_and_leakage.ipynb
 ```
 
 ## Setup
