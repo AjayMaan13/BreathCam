@@ -410,13 +410,13 @@ GROUP BY s.lighting, s.camera_mount;
 - What does your ethics statement say about what you did not do?
 
 ## Tasks
-- [ ] `deid.py`: detect and blur faces, strip metadata, and verify the breathing estimate still works on blurred video.
-- [ ] `app.py` (Streamlit): upload or webcam, live signal plot, rate and confidence, a clear "research prototype" banner.
-- [ ] Record a 30-second demo clip and add a GIF to the README.
-- [ ] README sections: overview, install and run, data protocol, results table, figures, limitations, ethics statement, future work.
-- [ ] Two-page technical summary in `docs/report.md` (or PDF): background, methods, results, limitations.
-- [ ] Finish the lit review: 8-10 papers in Zotero, a half-page "related work" paragraph, and a one-page glossary (respiratory rate, tachypnea, retractions, wheeze, pediatric normal ranges).
-- [ ] Tag a release (`v1.0`), clean the repo, and make it public (data excluded).
+- [x] `deid.py`: detect and blur faces, strip metadata, and verify the breathing estimate still works on blurred video. *(Verified on a real clip: estimate unchanged, 12.0 vs 12.0 bpm.)*
+- [x] `app.py` (Streamlit): upload or webcam, live signal plot, rate and confidence, a clear "research prototype" banner. *(Upload only; the live webcam mode was cut as the plan's cut list allows. The plot appears after processing.)*
+- [x] Record a 30-second demo clip and add a GIF to the README. *(GIF shows only the chest crop and signal, no face.)*
+- [x] README sections: overview, install and run, data protocol, results table, figures, limitations, ethics statement, future work.
+- [x] Two-page technical summary in `docs/report.md` (or PDF): background, methods, results, limitations. *(`docs/report.md`.)*
+- [x] Finish the lit review: 8-10 papers in Zotero, a half-page "related work" paragraph, and a one-page glossary (respiratory rate, tachypnea, retractions, wheeze, pediatric normal ranges). *(11 references in `docs/references.md`, `docs/related_work.md`, `docs/glossary.md`. Mirror the new ones in Zotero.)*
+- [ ] Tag a release (`v1.0`), clean the repo, and make it public (data excluded). *(Left for the owner: outward-facing. See the release checklist in the hand-off message.)*
 
 ## Resume bullets (fill with real numbers only)
 

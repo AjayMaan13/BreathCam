@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Phase 7: demo, de-identification, write-up
+- `breathcam/deid.py` (face blur with gap filling, audio dropped, metadata stripped incl. GPS; verified on a real clip: 2777/2782 faces detected, 0 unprotected, estimate 12.0 -> 12.0 bpm), `app.py` (Streamlit upload demo; deletes its temporary copy immediately), `breathcam/demo_gif.py` and `docs/demo.gif`
+- Docs: full README, `docs/report.md`, `docs/related_work.md`, `docs/glossary.md`, 11 references, final ethics statement
+- Tests: `tests/test_deid.py`, `tests/test_app.py`
+- Not done (owner decisions): `v1.0` tag, making the repo public, retention date in the ethics statement
+
 ### Phase 6 (on BIDMC, 1D CNN): explainability and leakage
 - `breathcam/explain.py` (1D Grad-CAM), `breathcam/leakage.py`, `split="random"` option in `train.py`, `notebooks/04_explain_and_leakage.ipynb`, figures in `docs/figures/`
 - Leakage: same CNN, random-window split MAE 0.46 vs patient-split 0.98 (honest error 2.1x higher)
